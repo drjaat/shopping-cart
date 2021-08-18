@@ -33,8 +33,9 @@ export default function Cart() {
   const decerement = (id) => {
     setListItems(
       listItems.map((item) => {
+        const quantity = item.quantity - 1
         if (item.id === id) {
-          return { ...item, quantity: item.quantity-- }
+          return { ...item, quantity }
         }
         return item
       })
