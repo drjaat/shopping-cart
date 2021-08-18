@@ -8,13 +8,13 @@ export default function SubTotal({ listItems }) {
       <p>Items({listItems.length})</p>
       <span>:</span>
       <p>
-        &#8377;
+        &#36;
         {listItems.reduce((a, item) => a + item.price * item.quantity, 0)}
       </p>
       <p>Discount</p>
       <span>:</span>
       <p>
-        -&#8377;
+        -&#36;
         {listItems.reduce(
           (a, item) => a + item.price * item.quantity * (item.discount / 100),
           0
@@ -23,7 +23,7 @@ export default function SubTotal({ listItems }) {
       <p>Type Discount</p>
       <span>:</span>
       <p>
-        -&#8377;
+        -&#36;
         {listItems.reduce(
           (a, item) =>
             a +
@@ -34,7 +34,7 @@ export default function SubTotal({ listItems }) {
       <div className={SubTotalStyles.total}>
         <h2>Order Total</h2>
         <h2>
-          &#8377;
+          &#36;
           {listItems.reduce(
             (a, item) =>
               a +

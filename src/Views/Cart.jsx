@@ -32,7 +32,7 @@ export default function Cart() {
   }
 
   const reloadItems = () => {
-    //reload
+    setListItems(Data.map((item) => ({ ...item, quantity: 1 })))
   }
 
   if (loading) {
@@ -69,7 +69,7 @@ export default function Cart() {
                       changeQuantity(id, 'Dec')
                     }}
                   />
-                  <p> &#8377;{price}</p>
+                  <p> &#36;{price}</p>
                 </div>
               )
             })
