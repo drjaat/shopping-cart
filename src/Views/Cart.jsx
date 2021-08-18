@@ -95,7 +95,7 @@ export default function Cart() {
         </div>
       </div>
       <div className={CartStyle.subTotal}>
-        <SubTotal />
+        <SubTotal listItems={listItems} />
       </div>
     </div>
   )
