@@ -19,22 +19,11 @@ export default function Cart() {
     setListItems(listItems.filter((item) => item.id !== id))
   }
 
-  const incerement = (id) => {
+  const changeQuantity = (id, type) => {
     setListItems(
       listItems.map((item) => {
         if (item.id === id) {
-          const quantity = item.quantity + 1
-          return { ...item, quantity }
-        }
-        return item
-      })
-    )
-  }
-  const decerement = (id) => {
-    setListItems(
-      listItems.map((item) => {
-        const quantity = item.quantity - 1
-        if (item.id === id) {
+          const quantity = item.quantity + (type === 'Inc' ? +1 : -1)
           return { ...item, quantity }
         }
         return item
@@ -74,10 +63,10 @@ export default function Cart() {
                   <Quantity
                     quantity={quantity}
                     incerement={() => {
-                      incerement(id)
+                      changeQuantity(id, 'Inc')
                     }}
                     decerement={() => {
-                      decerement(id)
+                      changeQuantity(id, 'Dec')
                     }}
                   />
                   <p> &#8377;{price}</p>
