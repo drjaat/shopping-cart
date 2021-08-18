@@ -41,39 +41,62 @@ export default function Cart() {
     )
   }
 
+  const reloadItems = () => {
+    //reload
+  }
+
   if (loading) {
     return <h1>Loading....</h1>
   }
   return (
-    <div>
-      <div>
-        {listItems &&
-          listItems.map(({ id, name, img_url, price, quantity }) => {
-            return (
-              <>
-                <CartItem
-                  id={id}
-                  name={name}
-                  img={img_url}
-                  deleteItem={() => {
-                    deleteItem(id)
-                  }}
-                />
-                <Quantity
-                  quantity={quantity}
-                  incerement={() => {
-                    incerement(id)
-                  }}
-                  decerement={() => {
-                    decerement(id)
-                  }}
-                />
-                <span>{price}</span>
-              </>
-            )
-          })}
+    <div className={CartStyle.main}>
+      <h1>Order Summary</h1>
+      <div className={CartStyle.item_list}>
+        <div className={CartStyle.head_container}>
+          <p>Items({listItems.length})</p>
+          <p>Qty</p>
+          <p>Price</p>
+        </div>
+        <div className={CartStyle.list_box}>
+          {listItems && listItems.length ? (
+            listItems.map(({ id, name, img_url, price, quantity }) => {
+              return (
+                <div key={id} className={CartStyle.list_row}>
+                  <CartItem
+                    id={id}
+                    name={name}
+                    img_url={img_url}
+                    deleteItem={() => {
+                      deleteItem(id)
+                    }}
+                  />
+                  <Quantity
+                    quantity={quantity}
+                    incerement={() => {
+                      incerement(id)
+                    }}
+                    decerement={() => {
+                      decerement(id)
+                    }}
+                  />
+                  <p> &#8377;{price}</p>
+                </div>
+              )
+            })
+          ) : (
+            <button
+              type='button'
+              className={CartStyle.reload}
+              onClick={reloadItems}
+            >
+              Reload items in the Cart
+            </button>
+          )}
+        </div>
       </div>
-      <SubTotal />
+      <div className={CartStyle.subTotal}>
+        <SubTotal />
+      </div>
     </div>
   )
 }

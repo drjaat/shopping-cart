@@ -6,7 +6,9 @@ import Cart from './Views/Cart'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Cart />
+    <div className='App'>
+      <Cart />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 )

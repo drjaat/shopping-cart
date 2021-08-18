@@ -1,4 +1,22 @@
 .cartItem {
-  display: flex;
-  flex-direction: row;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  -webkit-box-shadow: 10px 10px 12px -5px var(--color-gray);
+  -moz-box-shadow: 10px 10px 12px -5px var(--color-gray);
+  box-shadow: 10px 10px 12px -5px var(--color-gray);
+  border: var(--border-size) solid var(--color-gray);
+  transition: all 0.3s;
+}
+.cartItem:hover {
+  box-shadow: none;
+}
+.cartItem > span {
+  align-self: center;
+}
+.cartItem > button {
+  background-color: inherit;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
