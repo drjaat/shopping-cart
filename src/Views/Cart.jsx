@@ -11,16 +11,22 @@ export default function Cart() {
 
   useEffect(() => {
     setLoading(true)
-    setListItems(Data.map((item) => ({ ...item, quantity: 1 })))
+    const list = JSON.parse(localStorage.getItem('Items'))
+    updateItemList(list ? list : Data.map((item) => ({ ...item, quantity: 1 })))
     setLoading(false)
   }, [])
 
+  const updateItemList = (updatedList) => {
+    setListItems(updatedList)
+    localStorage.setItem('Items', JSON.stringify(updatedList))
+  }
+
   const deleteItem = (id) => {
-    setListItems(listItems.filter((item) => item.id !== id))
+    updateItemList(listItems.filter((item) => item.id !== id))
   }
 
   const changeQuantity = (id, type) => {
-    setListItems(
+    updateItemList(
       listItems.map((item) => {
         if (item.id === id) {
           const quantity = item.quantity + (type === 'Inc' ? +1 : -1)
@@ -32,7 +38,7 @@ export default function Cart() {
   }
 
   const reloadItems = () => {
-    setListItems(Data.map((item) => ({ ...item, quantity: 1 })))
+    updateItemList(Data.map((item) => ({ ...item, quantity: 1 })))
   }
 
   if (loading) {
